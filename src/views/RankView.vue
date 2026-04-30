@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import FallbackImage from '@/components/FallbackImage.vue'
 import { 
   books, 
   categories,
@@ -117,18 +118,25 @@ const rankData = computed(() => getRankData())
               </span>
             </div>
 
-            <img 
+            <div 
               v-if="item.cover"
-              :src="item.cover" 
-              :alt="item.title"
-              class="w-16 h-24 sm:w-20 sm:h-28 object-cover rounded-lg shadow-md flex-shrink-0 group-hover:shadow-lg transition-shadow"
-            />
+              class="w-16 h-24 sm:w-20 sm:h-28 rounded-lg overflow-hidden shadow-md flex-shrink-0 group-hover:shadow-lg transition-shadow"
+            >
+              <FallbackImage
+                :src="item.cover"
+                :alt="item.title"
+                :title="item.title"
+                :author="item.author"
+                type="cover"
+              />
+            </div>
             
-            <div v-else class="w-16 h-24 sm:w-20 sm:h-28 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
-              <img 
-                :src="item.avatar" 
+            <div v-else class="w-16 h-24 sm:w-20 sm:h-28 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
+              <FallbackImage
+                :src="item.avatar"
                 :alt="item.name"
-                class="w-12 h-12 rounded-full object-cover"
+                :title="item.name"
+                type="avatar"
               />
             </div>
 

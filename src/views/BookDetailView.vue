@@ -7,6 +7,7 @@ import { useHistoryStore } from '@/stores/history'
 import { getBookById, getBooksByCategory } from '@/data/books'
 import { getChaptersByBook, getChapterById, getChapterIndex, generateMoreChapters } from '@/data/chapters'
 import BookCard from '@/components/BookCard.vue'
+import FallbackImage from '@/components/FallbackImage.vue'
 import GiftSelector from '@/components/GiftSelector.vue'
 
 const route = useRoute()
@@ -111,11 +112,15 @@ onMounted(() => {
         <div class="flex flex-col sm:flex-row gap-6 sm:gap-8">
           <div class="flex-shrink-0 mx-auto sm:mx-0">
             <div class="relative">
-              <img 
-                :src="book.cover" 
-                :alt="book.title"
-                class="w-40 sm:w-48 h-56 sm:h-64 object-cover rounded-2xl shadow-xl"
-              />
+              <div class="w-40 sm:w-48 h-56 sm:h-64 rounded-2xl overflow-hidden shadow-xl">
+                <FallbackImage
+                  :src="book.cover"
+                  :alt="book.title"
+                  :title="book.title"
+                  :author="book.author"
+                  type="cover"
+                />
+              </div>
               <div class="absolute -bottom-3 -right-3 px-3 py-1.5 bg-white rounded-full shadow-lg">
                 <span class="text-sm font-medium" :class="book.status === '已完结' ? 'text-green-600' : 'text-purple-600'">
                   {{ book.status }}

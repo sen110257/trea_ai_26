@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import FallbackImage from '@/components/FallbackImage.vue'
 import { useHistoryStore } from '@/stores/history'
 
 const router = useRouter()
@@ -89,11 +90,15 @@ function clearHistory() {
         >
           <div class="flex gap-4 sm:gap-6">
             <div class="relative flex-shrink-0">
-              <img 
-                :src="item.cover" 
-                :alt="item.title"
-                class="w-20 h-28 sm:w-24 sm:h-32 object-cover rounded-xl shadow-md"
-              />
+              <div class="w-20 h-28 sm:w-24 sm:h-32 rounded-xl overflow-hidden shadow-md">
+                <FallbackImage
+                  :src="item.cover"
+                  :alt="item.title"
+                  :title="item.title"
+                  :author="item.author"
+                  type="cover"
+                />
+              </div>
               <div class="absolute -bottom-2 -right-2 px-2 py-1 bg-gradient-to-r from-indigo-500 to-blue-500 text-white text-xs rounded-lg shadow-md">
                 继续阅读
               </div>

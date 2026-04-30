@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import FallbackImage from '@/components/FallbackImage.vue'
 import { useBookshelfStore } from '@/stores/bookshelf'
 import { useHistoryStore } from '@/stores/history'
 
@@ -72,11 +73,15 @@ function clearShelf() {
         >
           <div class="flex gap-4 sm:gap-6">
             <div class="relative flex-shrink-0">
-              <img 
-                :src="book.cover" 
-                :alt="book.title"
-                class="w-24 h-36 sm:w-28 sm:h-40 object-cover rounded-xl shadow-md"
-              />
+              <div class="w-24 h-36 sm:w-28 sm:h-40 rounded-xl overflow-hidden shadow-md">
+                <FallbackImage
+                  :src="book.cover"
+                  :alt="book.title"
+                  :title="book.title"
+                  :author="book.author"
+                  type="cover"
+                />
+              </div>
             </div>
 
             <div class="flex-1 min-w-0">

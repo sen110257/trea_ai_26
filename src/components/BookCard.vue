@@ -1,5 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import FallbackImage from './FallbackImage.vue'
 
 const props = defineProps({
   book: {
@@ -52,42 +53,40 @@ const sizeClasses = getSizeClasses()
     :class="['group cursor-pointer', sizeClasses.wrapper]"
     @click="goToDetail"
   >
-    <div class="relative overflow-hidden rounded-xl shadow-card group-hover:shadow-lg transition-all duration-300">
-      <img 
-        :src="book.cover" 
+    <div class="relative overflow-hidden rounded-xl shadow-card group-hover:shadow-lg transition-all duration-300" :class="sizeClasses.image">
+      <FallbackImage
+        :src="book.cover"
         :alt="book.title"
-        :class="[
-          'w-full object-cover transition-transform duration-500 group-hover:scale-105',
-          sizeClasses.image
-        ]"
-        loading="lazy"
+        :title="book.title"
+        :author="book.author"
+        type="cover"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       
       <div class="absolute top-2 right-2">
         <span 
           v-if="book.status === '已完结'"
-          class="px-2 py-0.5 bg-green-500/90 text-white text-xs rounded-full backdrop-blur-sm"
+          class="px-2.5 py-1 bg-green-600 text-white text-xs font-medium rounded-full shadow-lg"
         >
           完结
         </span>
         <span 
           v-else
-          class="px-2 py-0.5 bg-purple-500/90 text-white text-xs rounded-full backdrop-blur-sm"
+          class="px-2.5 py-1 bg-purple-600 text-white text-xs font-medium rounded-full shadow-lg"
         >
           连载
         </span>
       </div>
 
       <div class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-        <div class="flex items-center gap-2 text-white text-xs">
+        <div class="flex items-center gap-3 text-white text-xs">
           <span class="flex items-center gap-1">
             <span>⭐</span>
-            {{ book.rating }}
+            <span class="font-medium">{{ book.rating }}</span>
           </span>
           <span class="flex items-center gap-1">
             <span>👁️</span>
-            {{ (book.views / 10000).toFixed(0) }}万
+            <span class="font-medium">{{ (book.views / 10000).toFixed(0) }}万</span>
           </span>
         </div>
       </div>
@@ -101,7 +100,7 @@ const sizeClasses = getSizeClasses()
         {{ book.author }}
       </p>
       <div class="flex items-center gap-2 mt-1.5">
-        <span class="px-2 py-0.5 bg-purple-50 text-purple-600 text-xs rounded-md">
+        <span class="px-2.5 py-0.5 bg-purple-50 text-purple-700 text-xs font-medium rounded-md">
           {{ book.categoryName }}
         </span>
       </div>

@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import BookCard from '@/components/BookCard.vue'
+import FallbackImage from '@/components/FallbackImage.vue'
 import { 
   books, 
   categories, 
@@ -159,14 +160,18 @@ onMounted(() => {
               @click="router.push(`/book/${book.id}`)"
             >
               <div class="relative flex gap-4 p-4 bg-white rounded-xl shadow-soft hover:shadow-card transition-all duration-300">
-                <div class="absolute -top-2 -left-2 w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                <div class="absolute -top-2 -left-2 w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-bold text-sm shadow-lg z-10">
                   {{ index + 1 }}
                 </div>
-                <img 
-                  :src="book.cover" 
-                  :alt="book.title"
-                  class="w-16 h-24 object-cover rounded-lg shadow-md flex-shrink-0"
-                />
+                <div class="w-16 h-24 rounded-lg overflow-hidden shadow-md flex-shrink-0">
+                  <FallbackImage
+                    :src="book.cover"
+                    :alt="book.title"
+                    :title="book.title"
+                    :author="book.author"
+                    type="cover"
+                  />
+                </div>
                 <div class="flex-1 min-w-0">
                   <h3 class="font-semibold text-gray-800 line-clamp-1 group-hover:text-purple-600 transition-colors">
                     {{ book.title }}
@@ -175,11 +180,11 @@ onMounted(() => {
                   <div class="flex items-center gap-3 mt-2 text-xs text-gray-400">
                     <span class="flex items-center gap-1">
                       <span>⭐</span>
-                      {{ book.rating }}
+                      <span class="font-medium">{{ book.rating }}</span>
                     </span>
                     <span class="flex items-center gap-1">
                       <span>👁️</span>
-                      {{ (book.views / 10000).toFixed(0) }}万
+                      <span class="font-medium">{{ (book.views / 10000).toFixed(0) }}万</span>
                     </span>
                   </div>
                 </div>
