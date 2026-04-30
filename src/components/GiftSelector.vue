@@ -97,12 +97,18 @@ function close() {
                     @click="selectGift(gift)"
                     class="flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all duration-200"
                     :class="selectedGift?.id === gift.id 
-                      ? 'border-purple-500 bg-purple-50' 
-                      : 'border-gray-200 hover:border-purple-300 hover:bg-purple-50/50'"
+                      ? 'border-purple-600 bg-purple-100 ring-2 ring-purple-200' 
+                      : 'border-gray-200 hover:border-purple-400 hover:bg-purple-50'"
                   >
                     <span class="text-2xl mb-1">{{ gift.emoji }}</span>
-                    <span class="text-xs font-medium text-gray-700">{{ gift.name }}</span>
-                    <span class="text-xs text-gray-400 mt-0.5">{{ gift.price }}积分</span>
+                    <span 
+                      class="text-xs font-medium"
+                      :class="selectedGift?.id === gift.id ? 'text-purple-700' : 'text-gray-700'"
+                    >{{ gift.name }}</span>
+                    <span 
+                      class="text-xs mt-0.5"
+                      :class="selectedGift?.id === gift.id ? 'text-purple-600' : 'text-gray-500'"
+                    >{{ gift.price }}积分</span>
                   </button>
                 </div>
 

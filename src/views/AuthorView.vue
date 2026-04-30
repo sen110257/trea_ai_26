@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import FallbackImage from '@/components/FallbackImage.vue'
 import { getAuthorById } from '@/data/authors'
 import { getBooksByAuthor } from '@/data/books'
 import BookCard from '@/components/BookCard.vue'
@@ -57,11 +58,14 @@ onMounted(() => {
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
           <div class="relative">
-            <img 
-              :src="author.avatar" 
-              :alt="author.name"
-              class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl object-cover shadow-2xl ring-4 ring-white/30"
-            />
+            <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/30">
+              <FallbackImage
+                :src="author.avatar"
+                :alt="author.name"
+                :title="author.name"
+                type="avatar"
+              />
+            </div>
             <div class="absolute -bottom-2 -right-2 px-3 py-1 bg-white rounded-full shadow-lg">
               <span class="text-sm font-medium text-purple-600">作家</span>
             </div>
@@ -131,11 +135,15 @@ onMounted(() => {
           @click="router.push(`/book/${book.id}`)"
         >
           <div class="flex gap-4 sm:gap-6">
-            <img 
-              :src="book.cover" 
-              :alt="book.title"
-              class="w-20 h-28 sm:w-24 sm:h-32 object-cover rounded-xl shadow-md flex-shrink-0 group-hover:shadow-lg transition-shadow"
-            />
+            <div class="w-20 h-28 sm:w-24 sm:h-32 rounded-xl overflow-hidden shadow-md flex-shrink-0 group-hover:shadow-lg transition-shadow">
+              <FallbackImage
+                :src="book.cover"
+                :alt="book.title"
+                :title="book.title"
+                :author="book.author"
+                type="cover"
+              />
+            </div>
             
             <div class="flex-1 min-w-0">
               <div class="flex items-start justify-between gap-4">

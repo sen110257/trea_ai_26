@@ -155,3 +155,72 @@ select, input {
   border-radius: 2px;
   padding: 0 2px;
 }
+
+.category-btn-active {
+  @apply bg-purple-600 text-white shadow-lg shadow-purple-200;
+}
+
+.category-btn-inactive {
+  @apply bg-white text-gray-700 hover:bg-purple-50 hover:text-purple-700 shadow-sm;
+}
+
+.gift-btn-active {
+  @apply border-purple-600 bg-purple-100;
+}
+
+.gift-btn-active-text {
+  @apply text-purple-700 font-semibold;
+}
+
+.gift-btn-inactive {
+  @apply border-gray-200 hover:border-purple-400 hover:bg-purple-50;
+}
+
+.gift-btn-inactive-text {
+  @apply text-gray-700;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium;
+}
+
+.btn-primary:hover {
+  @apply from-purple-700 to-indigo-700;
+}
+
+.btn-secondary {
+  @apply bg-white text-gray-700 font-medium border border-gray-200;
+}
+
+.btn-secondary:hover {
+  @apply bg-gray-50;
+}
+
+.btn-success-outline {
+  @apply bg-white text-purple-700 font-medium border border-purple-200;
+}
+
+.btn-success-outline:hover {
+  @apply bg-purple-50;
+}
+
+.reading-progress-bar {
+  height: 2px;
+  @apply bg-gradient-to-r from-purple-500 to-indigo-500;
+}
+
+.floating-toc {
+  @apply bg-white/95 backdrop-blur-sm shadow-lg rounded-xl border border-gray-100;
+}
+
+.quick-action-bar {
+  @apply bg-white/95 backdrop-blur-sm shadow-lg border-t border-gray-100;
+}
+
+.decorative-dot {
+  @apply w-1 h-1 rounded-full bg-purple-300;
+}
+
+.decorative-line {
+  @apply h-px bg-gradient-to-r from-transparent via-purple-200 to-transparent;
+}
