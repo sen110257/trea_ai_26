@@ -885,9 +885,8 @@ onUnmounted(() => {
                     @click="goToChapter(chapter.id)"
                     class="w-full text-left px-4 py-3.5 rounded-xl transition-all duration-200 my-1 group"
                     :class="index + (chapterListPage - 1) * chaptersPerPage === currentChapterIndex 
-                      ? 'bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200' 
-                      : 'hover:bg-gray-50'"
-                    :style="index + (chapterListPage - 1) * chaptersPerPage !== currentChapterIndex ? { color: themeColors.text } : {}"
+                      ? 'bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200 text-purple-700' 
+                      : 'hover:bg-gray-50 text-gray-700'"
                   >
                     <div class="flex items-center justify-between">
                       <div class="flex items-center gap-2">

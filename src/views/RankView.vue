@@ -90,8 +90,8 @@ const rankData = computed(() => getRankData())
             @click="activeTab = tab.id"
             class="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200"
             :class="activeTab === tab.id 
-              ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-lg shadow-purple-200' 
-              : 'text-gray-600 hover:bg-gray-50'"
+              ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-200' 
+              : 'bg-white text-gray-700 hover:bg-gray-50 shadow-sm'"
           >
             <span>{{ tab.icon }}</span>
             <span>{{ tab.name }}</span>
